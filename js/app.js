@@ -53,23 +53,28 @@ function leerDatosCurso(curso) {
 function carritoHTML() {
 
     // Llamar funcion de limpiar carrito. 
-    linpiarHTML();
-
+    // linpiarHTML();
+    const itemsCarrito = document.querySelector('#items-carrito');
+let row = '';
     // Recorrer el carrito y general el HTML.
     articulosCarrito.forEach( articulo => {
-        const row = document.createElement('tr');
+        // const row = document.createElement('tr');
         // inserta el html cons los valores. 
         const {imagen, titulo, precio, cantidad, id} = articulo;
-        row.innerHTML = `
-            <td> <img src="${imagen}" width="100"> </td>    
-            <td> ${titulo} </td>
-            <td> ${precio} </td>
-            <td> ${cantidad} </td>
-            <td> <a class="borrar-curso" data-id="${id}"> X </a>
+        
+        row += `
+            <tr>
+                <td> <img src="${imagen}" width="100"> </td>    
+                <td> ${titulo} </td>
+                <td> ${precio} </td>
+                <td> ${cantidad} </td>
+                <td> <a class="borrar-curso" data-id="${id}"> X </a> </td>
+            </tr>
         `;
         // Agregar el html del carrito en el tbody.
-        contenedorCarrito.appendChild(row);
+        // contenedorCarrito.appendChild(row);
     }) 
+    itemsCarrito.innerHTML = row;
 }
 
 // Limpiar los cursos del tbody. 
