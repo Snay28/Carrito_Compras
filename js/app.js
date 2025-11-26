@@ -1,13 +1,21 @@
 // Variables
 const carrito = document.querySelector('#carrito');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');
-const vaciarCarritoBtn = document.querySelector('#vaciar-carrito')
+const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 const listaCursos = document.querySelector('#lista-cursos');
 let articulosCarrito = []; // Para guardar los cursos seleccionados en el carrito. 
 
 registrarEventListeners(); // Llama la funcion globalmente. 
 function registrarEventListeners() {
     listaCursos.addEventListener('click', agregarCursos); // click y llama funcion. 
+
+    vaciarCarritoBtn.addEventListener('click', (e) => {
+        console.log(e);
+        if (e.target.classList.id = 'vacias-carrito') {
+            linpiarHTML();
+            articulosCarrito = [];
+        }
+    })
 }
 
 // Funciones.
@@ -50,10 +58,14 @@ function carritoHTML() {
     // Recorrer el carrito y general el HTML.
     articulosCarrito.forEach( articulo => {
         const row = document.createElement('tr');
+        // inserta el html cons los valores. 
+        const {imagen, titulo, precio, cantidad, id} = articulo;
         row.innerHTML = `
-            <td>
-                ${articulo.titulo}
-            </td>
+            <td> <img src="${imagen}" width="100"> </td>    
+            <td> ${titulo} </td>
+            <td> ${precio} </td>
+            <td> ${cantidad} </td>
+            <td> <a class="borrar-curso" data-id="${id}"> X </a>
         `;
         // Agregar el html del carrito en el tbody.
         contenedorCarrito.appendChild(row);
@@ -62,5 +74,12 @@ function carritoHTML() {
 
 // Limpiar los cursos del tbody. 
 function linpiarHTML() {
-    contenedorCarrito.innerHTML = '';
+    // forma lenta. 
+    // contenedorCarrito.innerHTML = '';
+
+    // Mas performan y rapido. 
+    // Elimina los nodos del html. 
+    while (contenedorCarrito.firstChild) {
+        contenedorCarrito.removeChild(contenedorCarrito.firstChild);
+    }
 }
