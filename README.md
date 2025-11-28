@@ -12,6 +12,8 @@ El objetivo principal fue aprender a **manipular el DOM**, gestionar arrays y ob
 
 En el código dejé comentarios que muestran mis intentos iniciales, errores comunes y cómo encontré la solución correcta. Este proyecto representa mi proceso de aprendizaje desde cero.
 
+Pagina del proyecto publicada: https://proyecto-carrito-snay28.netlify.app/
+
 ---
 
 ## 🧰 Tecnologías utilizadas
