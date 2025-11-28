@@ -12,7 +12,8 @@ function registrarEventListeners() {
     vaciarCarritoBtn.addEventListener('click', (e) => {
         console.log(e);
         if (e.target.classList.id = 'vacias-carrito') {
-            linpiarHTML();
+            // linpiarHTML();
+            contenedorCarrito.innerHTML = '';
             articulosCarrito = [];
         }
     })
@@ -41,11 +42,29 @@ function leerDatosCurso(curso) {
         cantidad: 1
     }
 
-    // Agregar elementos al arreglo 'articulosCarrito'.
+    // Revisa si un elemento ya existe  en el carrito. 
 
-    articulosCarrito = [...articulosCarrito, infoCurso];
-    console.log(articulosCarrito);
-    carritoHTML();
+    const existe = articulosCarrito.some( curso => curso.id === infoCurso.id);
+    
+    if (existe) {
+        const cursos = articulosCarrito.map( curso => {
+            if ( curso.id === infoCurso.id) {
+                curso.cantidad++;
+                return curso;
+            } else {
+                return curso;
+            }
+        })
+        articulosCarrito = [...cursos];
+    } else {
+        // Agregar elementos al arreglo 'articulosCarrito'.
+        articulosCarrito = [...articulosCarrito, infoCurso];
+       
+    }
+    
+     carritoHTML();
+
+
 }
 
 // Muestra el carrito de compra en el HTML. 
@@ -54,15 +73,14 @@ function carritoHTML() {
 
     // Llamar funcion de limpiar carrito. 
     // linpiarHTML();
-    
-let row = '';
+    let row = '';
     // Recorrer el carrito y general el HTML.
     articulosCarrito.forEach( articulo => {
         // const row = document.createElement('tr');
         // inserta el html cons los valores. 
         const {imagen, titulo, precio, cantidad, id} = articulo;
-        
-        row += `
+
+            row += `
             <tr>
                 <td> <img src="${imagen}" width="100"> </td>    
                 <td> ${titulo} </td>
@@ -71,12 +89,13 @@ let row = '';
                 <td> <a class="borrar-curso" data-id="${id}"> X </a> </td>
             </tr>
         `;
+        
         // Agregar el html del carrito en el tbody.
         // contenedorCarrito.appendChild(row);
     }) 
     contenedorCarrito.innerHTML = row;
 }
-
+/* 
 // Limpiar los cursos del tbody. 
 function linpiarHTML() {
     // forma lenta. 
@@ -88,3 +107,4 @@ function linpiarHTML() {
         contenedorCarrito.removeChild(contenedorCarrito.firstChild);
     }
 }
+ */
