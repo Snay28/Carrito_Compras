@@ -54,7 +54,7 @@ function carritoHTML() {
 
     // Llamar funcion de limpiar carrito. 
     // linpiarHTML();
-    const itemsCarrito = document.querySelector('#items-carrito');
+    
 let row = '';
     // Recorrer el carrito y general el HTML.
     articulosCarrito.forEach( articulo => {
@@ -74,7 +74,7 @@ let row = '';
         // Agregar el html del carrito en el tbody.
         // contenedorCarrito.appendChild(row);
     }) 
-    itemsCarrito.innerHTML = row;
+    contenedorCarrito.innerHTML = row;
 }
 
 // Limpiar los cursos del tbody. 
