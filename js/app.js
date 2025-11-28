@@ -114,7 +114,6 @@ function linpiarHTML() {
  */
 
 function eliminarCurso(e) {
-    console.log(e);
 
      if (e.target.classList.contains('borrar-curso')) {
 
